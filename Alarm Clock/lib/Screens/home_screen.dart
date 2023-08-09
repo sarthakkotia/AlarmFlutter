@@ -50,21 +50,53 @@ class HomeScreen extends StatelessWidget {
                 // print(newAlarm);
                 Provider.of<AlarmListProvider>(context, listen: false)
                     .addAlarm(newAlarm);
-                int test = newAlarm.datetime.difference(now).inSeconds;
+                int sec = newAlarm.datetime.difference(now).inSeconds;
+                // print(sec);
                 String? diff;
-                int min = 0;
-                if (((test / 60) / 60).floor() == 0) {
-                  min = (test / 60).ceil();
-                }else{
-
+                if (sec >= 0) {
+                  int min = (sec / 60).ceil();
+                  double hrs = ((sec / 60) / 60);
+                  // print(hrs);
+                  int flooredhrs = hrs.floor();
+                  print(flooredhrs);
+                  if (flooredhrs == 0) {
+                    // only show minutes
+                    diff = "Alam set for $min minutes from now";
+                  } else {
+                    sec = sec - flooredhrs * 60 * 60;
+                    min = (sec / 60).ceil();
+                    diff =
+                        "Alarm set for $flooredhrs hours and $min minutes from now";
+                  }
+                } else {
+                  // print(sec);
+                  sec = sec + 24 * 60 * 60;
+                  // print(sec);
+                  int min = (sec / 60).ceil();
+                  double hrs = ((sec / 60) / 60);
+                  // print(hrs);
+                  int flooredhrs = hrs.floor();
+                  print(flooredhrs);
+                  if (flooredhrs == 0) {
+                    // only show minutes
+                    diff = "Alam set for $min minutes from now";
+                  } else {
+                    sec = sec - flooredhrs * 60 * 60;
+                    min = (sec / 60).ceil();
+                    diff =
+                        "Alarm set for $flooredhrs hours and $min minutes from now";
+                  }
                 }
-                print(min);
+                // print(min);
 
                 ScaffoldMessenger.of(context)
                   ..removeCurrentMaterialBanner()
                   ..showMaterialBanner(
                     MaterialBanner(
-                      content: Text("Alarm set for $min minutes from now"),
+                      content: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(diff),
+                      ),
                       actions: [
                         TextButton(
                           onPressed: () {

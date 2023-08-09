@@ -9,6 +9,8 @@ void main() {
   //TODO: Lean how to do a get started tutorial in flutter apps
   //TODO: Implement that the theme color should be same to that of the wallpaper of the phone ie true material you
   //TODO: Implement Dark mode and light mode and a switch among them
+  //TODO : animate no alarms here
+  //TODO: add local storage
 }
 
 class MyApp extends StatelessWidget {
