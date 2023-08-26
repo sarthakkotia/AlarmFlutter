@@ -34,7 +34,6 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //TODO:add alarm instance
-          //Todo:use show Time picker
           Future<TimeOfDay?> time = showTimePicker(
             context: context,
             initialTime: TimeOfDay.now(),
