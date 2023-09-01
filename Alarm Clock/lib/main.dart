@@ -1,16 +1,13 @@
 import 'dart:isolate';
 
 import 'package:alarm_clock_v1/Models/alarm_list_provider.dart';
-import 'package:alarm_clock_v1/Screens/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:alarm_clock_v1/Screens/home_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 
 void main() async {
   // Be sure to add this line if initialize() call happens before runApp()
   WidgetsFlutterBinding.ensureInitialized();
-  await AndroidAlarmManager.initialize();
   runApp(const MyApp());
   //TODO : implement splash screen
   //TODO: Lean how to do a get started tutorial in flutter apps
@@ -36,8 +33,7 @@ class MyApp extends StatelessWidget {
               seedColor: Colors.blueGrey, brightness: Brightness.dark),
           useMaterial3: true,
         ),
-        // home: const HomeScreen(),
-        home: const TestScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
